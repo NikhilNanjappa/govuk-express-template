@@ -8,3 +8,4 @@ coverage
 .scanner
 .sonarlint
 node_modules
+dist
