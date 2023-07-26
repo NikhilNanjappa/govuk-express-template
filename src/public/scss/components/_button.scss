@@ -1,0 +1,40 @@
+.button-link {
+  display: block;
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #1D70B8;
+  padding: 0;
+  cursor: pointer;
+}
+
+.button-link:hover {
+  color: #003078;
+}
+
+.button-link:visited {
+  color: #1d70b8;
+}
+
+.button-link:focus {
+  background: #fd0;
+  color: #0b0c0c;
+  box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+}
+
+.button-link.delete {
+  font-size: 19px;
+}
+
+.button-link.inline {
+  display: inline;
+  font-size: 19px;
+}
+
+@media (min-width: 40.0625em) {
+  .button-link {
+    font-size: 1.1875rem;
+    line-height: 1.47368;
+  }
+}

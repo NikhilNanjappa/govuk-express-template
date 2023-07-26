@@ -1,0 +1,17 @@
+{% from "button/macro.njk" import govukButton %}
+{% extends '../layout.njk' %}
+
+{% block pageTitle %}{{ t("problem-with-service:browserTabTitle") }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">{{ t("problem-with-service:pageHeading") }}</h1>
+    <div class="page-description">
+      <p>{{ t("problem-with-service:tryLaterParagraph") }}</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

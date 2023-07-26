@@ -1,0 +1,10 @@
+.idea
+.DS_Store
+target
+*.iml
+.coverage
+coverage
+.nyc_output
+.scanner
+.sonarlint
+node_modules

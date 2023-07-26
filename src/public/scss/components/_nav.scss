@@ -1,0 +1,55 @@
+main:has(nav) {
+  padding-top: 0 !important;
+}
+
+.navigation-secondary {
+  ul {
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    margin: 0 auto;
+    max-width: 960px;
+    padding-left: 0;
+  }
+
+  border-bottom: 1px solid #bfc1c3;
+  margin: auto;
+  max-width: 960px;
+
+  &:has(+ a) {
+    margin-bottom: 0 !important;
+  }
+
+  li {
+    float: left;
+    list-style-type: none;
+  }
+
+  a {
+    display: block;
+    padding: 15px;
+
+    &:visited {
+      color: #005ea5;
+    }
+
+    &:hover {
+      background-color: #f8f8f8;
+    }
+  }
+
+  .active {
+    box-shadow: inset 0px -5px 0px 0px #005ea5;
+    color: #0b0c0c;
+  }
+}
+
+@media (max-width: 640px) {
+  .navigation-secondary li {
+    border: 0;
+    width: 100%;
+  }
+}

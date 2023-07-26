@@ -1,0 +1,54 @@
+{% extends "template.njk" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% set htmlClasses = "app-html-class" %}
+{% set htmlLang = "en" %}
+{% set assetPath = "" %}
+{% set themeColor = "blue" %}
+{% set bodyClasses = "app-body-class" %}
+
+{% block pageTitle %}
+  {% if error %}{{ t("global:error.error") }}: {% endif %}
+{% endblock %}
+
+{% block headIcons %}
+  {{ super() }}
+{% endblock %}
+
+{% block head %}
+  <link href="style.css" rel="stylesheet" />
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "https://www.gov.uk/",
+    serviceName: t("layout:serviceName"),
+    serviceUrl: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block main %}
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper app-main-class {{ mainClasses }}" id="main-content" role="main">
+      {% include "__partials__/nav-secondary.njk" %}
+
+      {% if pageData.backLocation and not inEditMode %}
+        {{ govukBackLink({
+          "href": pageData.backLocation,
+          "text": backLinkText or t("global:back"),
+          "classes": "govuk-!-margin-bottom-7"
+        }) }}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+{% endblock %}
+
+{% block bodyEnd %}
+  <script src="/app.js"></script>
+{% endblock %}

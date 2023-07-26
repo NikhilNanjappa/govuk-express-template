@@ -1,0 +1,18 @@
+{% macro errorSummary(error) %}
+	<div class="govuk-error-summary" role="alert" tabindex="0" data-module="govuk-error-summary">
+		<h2 class="govuk-error-summary__title" id="error-summary-title">{{ t("global:error.summary.heading") }}</h2>
+		<div class="govuk-error-summary__body">
+			<ul class="govuk-list govuk-error-summary__list">
+				{% for error in error.errors %}
+					{% if error.description | isString %}
+						<li>
+							<a id="error-{{ error.fieldName }}" href="{{ '#' + error.fieldName + (error.suffix[0] or '') }}" aria-label="{{ t("global:error.error") }}: {{ t(error.description) }}">
+								{{ t(error.description) }}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endmacro %}

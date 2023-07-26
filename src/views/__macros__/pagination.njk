@@ -1,0 +1,60 @@
+{% from "pagination/macro.njk" import govukPagination %}
+
+{% macro paginationNav(config) %}
+  {# 
+    Pagination navigation - previous & next
+
+    Options:
+    page - the current page (starts from 1)
+    size - number of records per page
+    recordsInPage - number of rows in current page
+    totalRecords - total number of records
+    href - href URL address
+  #}
+
+  {% if config.totalRecords %}
+    {{ govukPagination({
+      previous: {
+        href: config.href + "?page=" + (config.page - 1)
+      } if config.page > 1,
+      next: {
+        href: config.href + "?page=" + (config.page + 1)
+      } if config.page * config.size < config.totalRecords,
+      items: [
+        {
+          number: config.page - 1,
+          href: config.href + "?page=" + (config.page - 1)
+        } if config.page > 1,
+        {
+          number: config.page,
+          current: true,
+          href: config.href + "?page=" + config.page
+        },
+        {
+          number: config.page + 1,
+          href: config.href + "?page=" + (config.page + 1)
+        } if config.page * config.size < config.totalRecords
+      ]
+    }) }}
+  {% else %}
+    {{ govukPagination({
+      previous: { href: config.href + "?page=" + (config.page - 1) } if config.page > 1,
+      next: { href: config.href + "?page=" + (config.page + 1) } if config.recordsInPage == config.size,
+      items: [
+        {
+          number: config.page - 1,
+          href: config.href + "?page=" + (config.page - 1)
+        } if config.page > 1,
+        {
+          number: config.page,
+          current: true,
+          href: config.href + "?page=" + config.page
+        },
+        {
+          number: config.page + 1,
+          href: config.href + "?page=" + (config.page + 1)
+        } if config.recordsInPage == config.size
+      ]
+    }) }}
+  {% endif %}
+{% endmacro %}

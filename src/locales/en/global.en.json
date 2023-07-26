@@ -1,0 +1,30 @@
+{
+  "yes": "Yes",
+  "no": "No",
+  "day": "Day",
+  "month": "Month",
+  "year": "Year",
+  "back": "Back",
+  "change": "Change",
+  "continue": "Continue",
+  "saveChanges": "Save changes",
+  "returnToHome": "Return to home",
+  "cancel": "Cancel",
+  "error": {
+    "error": "Error",
+    "summary": {
+      "heading": "There is a problem"
+    },
+    "date": {
+      "msgPrefix": "Date",
+      "required": "Enter a ",
+      "dayRequired": " must include a day",
+      "monthRequired": " must include a month",
+      "yearRequired": " must include a year",
+      "dayMonthRequired": " must include a day and month",
+      "dayYearRequired": " must include a day and year",
+      "monthYearRequired": " must include a month and year",
+      "invalid": " must be a real date"
+    }
+  }
+}

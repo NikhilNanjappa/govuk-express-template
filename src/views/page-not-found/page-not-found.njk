@@ -1,0 +1,17 @@
+{% extends '../layout.njk' %}
+
+{% block pageTitle %}
+  {{ t("page-not-found:h1") }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">{{ t("page-not-found:h1") }}</h1>
+    <p class="govuk-body">{{ t("page-not-found:p1") }}</p>
+    <p class="govuk-body">{{ t("page-not-found:p2") }}</p>
+  </div>
+</div>
+
+{% endblock %}
