@@ -1,5 +1,7 @@
 {% extends '../layout.njk' %}
 
+{% from "pagination/macro.njk" import govukPagination %}
+
 {% block pageTitle %}
   {{ t("dashboard:h1") }}
 {% endblock %}
@@ -9,6 +11,9 @@
     <div class="govuk-grid-column-full">
       <span class="govuk-caption-xl" id="sub-heading">{{ t("dashboard:h1") }}</span>
       <h1 class="govuk-heading-xl">{{ pageData.message }}</h1>
+      {% if pageData.pagination.numberOfPages > 0 %}
+        {{ govukPagination(pageData.pagination.component) }}
+      {% endif %}
     </div>
   </div>
 {% endblock %}
