@@ -1,16 +1,22 @@
-import fs from 'fs';
-import { configure, render } from 'nunjucks';
-import configRoutes from '../../config-routes';
+import fs from "fs";
+import { configure, render } from "nunjucks";
+import configRoutes from "../../config-routes";
 
-// FILTERS
+// FILTERS & GLOBALS
 const addNunjucksFilters = (env) => {
-  env.addGlobal('routes', configRoutes);
-  env.addGlobal('joinarrays', (array1, array2) => array1.concat(array2));
+  env.addFilter(
+    "isString",
+    (str) => typeof str === "string" || str instanceof String,
+  );
+
+  env.addGlobal("govukRebrand", true);
+  env.addGlobal("routes", configRoutes);
+  env.addGlobal("joinarrays", (array1, array2) => array1.concat(array2));
 };
 
 // SETUP
 const readDirectory = (dir = null) => {
-  const rootDir = 'src/views';
+  const rootDir = "src/views";
   const workingDir = dir ? `${rootDir}/${dir}` : rootDir;
   return fs.readdirSync(workingDir, {
     withFileTypes: true,
@@ -19,7 +25,7 @@ const readDirectory = (dir = null) => {
 
 const parseDirectories = (appViews, name = null) => {
   const dirContents = readDirectory(name);
-  const rootDir = 'src/views';
+  const rootDir = "src/views";
 
   // include top level views
   appViews.push(`${rootDir}/${name}/`);
@@ -38,16 +44,16 @@ const parseDirectories = (appViews, name = null) => {
 
 const getViews = () => {
   const appViews = [
-    'src/views/',
-    'src/views/layout.njk',
-    'node_modules/govuk-frontend/govuk/',
-    'node_modules/govuk-frontend/govuk/components/',
+    "src/views/",
+    "src/views/layout.njk",
+    "node_modules/govuk-frontend/dist/govuk/",
+    "node_modules/govuk-frontend/dist/govuk/components/",
   ];
 
   const dirContents = readDirectory();
   dirContents
     .map((viewsDir) => viewsDir.name)
-    .filter((dirName) => !dirName.includes('.njk'))
+    .filter((dirName) => !dirName.includes(".njk"))
     .forEach((viewsDir) => parseDirectories(appViews, viewsDir));
 
   return appViews;
@@ -62,8 +68,8 @@ const configureNunjucks = (app) => {
   };
 
   const nunjucksAppEnv = configure(getViews(), nunjucksConfig);
-  app.set('view engine', 'njk');
-  app.engine('njk', render);
+  app.set("view engine", "njk");
+  app.engine("njk", render);
 
   addNunjucksFilters(nunjucksAppEnv);
 };
