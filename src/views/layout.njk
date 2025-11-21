@@ -2,7 +2,7 @@
 
 {% from "back-link/macro.njk" import govukBackLink %}
 
-{% set htmlClasses = "app-html-class" %}
+{% set htmlClasses = "app-html-class govuk-template--rebranded" %}
 {% set htmlLang = "en" %}
 {% set assetPath = "" %}
 {% set themeColor = "blue" %}
@@ -26,6 +26,8 @@
     serviceName: t("layout:serviceName"),
     serviceUrl: "/"
   }) }}
+
+  {% include "__partials__/nav-secondary.njk" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,17 +35,14 @@
 
 {% block main %}
   <div class="govuk-width-container">
-    <main class="govuk-main-wrapper app-main-class {{ mainClasses }}" id="main-content" role="main">
-      {% include "__partials__/nav-secondary.njk" %}
+    {% if pageData.backLocation and not inEditMode %}
+      {{ govukBackLink({
+        "href": pageData.backLocation,
+        "text": backLinkText or t("global:back")
+      }) }}
+    {% endif %}
 
-      {% if pageData.backLocation and not inEditMode %}
-        {{ govukBackLink({
-          "href": pageData.backLocation,
-          "text": backLinkText or t("global:back"),
-          "classes": "govuk-!-margin-bottom-7"
-        }) }}
-      {% endif %}
-
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
       {% block content %}{% endblock %}
     </main>
   </div>
