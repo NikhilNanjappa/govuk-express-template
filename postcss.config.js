@@ -1,8 +1,8 @@
 module.exports = {
   plugins: [
-    // eslint-disable-next-line global-require,import/no-extraneous-dependencies
-    require('precss'),
-    // eslint-disable-next-line global-require,import/no-extraneous-dependencies
-    require('autoprefixer'),
+    require("postcss-preset-env")({
+      stage: 3, // Enables modern CSS features
+    }),
+    require("autoprefixer"),
   ],
 };
